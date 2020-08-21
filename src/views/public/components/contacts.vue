@@ -5,10 +5,10 @@
         <b-card class="contacts_card rounded_corners shadow-lg">
           <p class="card-head">Контакты</p>
           <div class="card-content">
-            <p><v-icon name="map-marker-alt"/> {{ main_info.city }}, {{ main_info.address }}</p>
-            <p><v-icon name="calendar-alt"/> {{ main_info.date_from }}{{ main_info.date_to }}</p>
-            <p><v-icon name="clock"/> {{ main_info.hours }}</p>
-            <p><v-icon name="phone-alt"/> {{ main_info.phone }}</p>
+            <p><v-icon name="map-marker-alt"/> {{ $store.getters.CITY }}, {{ $store.getters.ADDRESS }}</p>
+            <p><v-icon name="calendar-alt"/> {{ $store.getters.DATE_FROM }}{{ $store.getters.DATE_TO }}</p>
+            <p><v-icon name="clock"/> {{ $store.getters.HOURS }}</p>
+            <p><v-icon name="phone-alt"/> {{ $store.getters.PHONE }}</p>
           </div>
         </b-card>
 
@@ -25,20 +25,20 @@
         <b-card class="contacts_card rounded_corners shadow-lg">
           <p class="card-head">Организатор</p>
           <div class="card-content">
-            <p><v-icon name="user-tie"/>{{ admin_info.name }}</p>
-            <p><v-icon name="envelope"/> <a href="mailto:${ admin_info.email }">{{ admin_info.email }}</a></p>
-            <p><v-icon name="phone-alt"/><a href="tel:${ admin_info.phone_raw }">{{ admin_info.phone }}</a></p>
+            <p><v-icon name="user-tie"/>{{ $store.getters.NAME }}</p>
+            <p><v-icon name="envelope"/> <a href="mailto:${ admin_info.email }">{{ $store.getters.EMAIL }}</a></p>
+            <p><v-icon name="phone-alt"/><a href="tel:${ admin_info.phone_raw }">{{ $store.getters.ADMIN_PHONE }}</a></p>
           </div>
         </b-card>
       </div>
       <div>
         <b-card class="map_card rounded_corners shadow-lg">
           <yandexMap style="height: 800px; width: 100%"
-                     :coords="main_info.location"
-                     :zoom="main_info.zoom"
+                     :coords="LOCATION"
+                     :zoom="ZOOM"
                      :controls="['zoomControl', 'fullscreenControl', 'routeEditor', 'geolocationControl']"
           >
-            <ymapMarker :coords="main_info.location"
+            <ymapMarker :coords="LOCATION"
                         :icon="marker_icon"
             />
           </yandexMap>
@@ -49,20 +49,21 @@
 </template>
 
 <script>
-  import { yandexMap, ymapMarker } from 'vue-yandex-maps'
+  import { mapGetters } from "vuex"
+  import { yandexMap, ymapMarker } from "vue-yandex-maps"
   export default {
     name: 'contacts',
-    props: ['main_info', 'admin_info'],
     components: { yandexMap, ymapMarker },
     data: () => ({
       marker_icon: {
         layout: 'default#imageWithContent',
-        imageHref: require('../../assets/icons/point.png'),
+        imageHref: require('@/assets/icons/point.png'),
         imageSize: [43, 43],
         imageOffset: [0, 0],
         contentOffset: [0, 15]
       }
-    })
+    }),
+    computed: mapGetters(["LOCATION", "ZOOM"])
   }
 </script>
 
