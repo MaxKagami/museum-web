@@ -13,7 +13,7 @@
         <b-navbar-nav>
           <b-nav-item href="tel:${ main_info.phone_raw }">
             <v-icon name="phone-alt"/>
-            {{ $store.getters.PHONE }}
+            {{ $store.getters["main/PHONE"] }}
           </b-nav-item>
         </b-navbar-nav>
 
@@ -24,10 +24,10 @@
           <b-nav-item href="#">
             КОНТАКТЫ
           </b-nav-item>
-          <b-nav-item :href="$store.getters.VK">
+          <b-nav-item :href="VK">
             <v-icon name="brands/vk" scale="1.7"/>
           </b-nav-item>
-          <b-nav-item :href="$store.getters.INSTAGRAM">
+          <b-nav-item :href="INSTAGRAM">
             <v-icon name="brands/instagram" scale="1.7"/>
           </b-nav-item>
           <b-nav-item href="#"></b-nav-item>
@@ -39,7 +39,11 @@
 </template>
 
 <script>
-  export default { name: 'navbar' }
+  import { mapGetters } from "vuex"
+  export default {
+    name: "navbar",
+    computed: mapGetters("links", ["VK", "INSTAGRAM"])
+  }
 </script>
 
 <style lang="sass">

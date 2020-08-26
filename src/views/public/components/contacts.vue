@@ -5,10 +5,10 @@
         <b-card class="contacts_card rounded_corners shadow-lg">
           <p class="card-head">Контакты</p>
           <div class="card-content">
-            <p><v-icon name="map-marker-alt"/> {{ $store.getters.CITY }}, {{ $store.getters.ADDRESS }}</p>
-            <p><v-icon name="calendar-alt"/> {{ $store.getters.DATE_FROM }}{{ $store.getters.DATE_TO }}</p>
-            <p><v-icon name="clock"/> {{ $store.getters.HOURS }}</p>
-            <p><v-icon name="phone-alt"/> {{ $store.getters.PHONE }}</p>
+            <p><v-icon name="map-marker-alt"/> {{ CITY }}, {{ ADDRESS }}</p>
+            <p><v-icon name="calendar-alt"/> {{ DATE_FROM }}{{ DATE_TO }}</p>
+            <p><v-icon name="clock"/> {{ HOURS }}</p>
+            <p><v-icon name="phone-alt"/> {{ PHONE }}</p>
           </div>
         </b-card>
 
@@ -25,9 +25,9 @@
         <b-card class="contacts_card rounded_corners shadow-lg">
           <p class="card-head">Организатор</p>
           <div class="card-content">
-            <p><v-icon name="user-tie"/>{{ $store.getters.NAME }}</p>
-            <p><v-icon name="envelope"/> <a href="mailto:${ admin_info.email }">{{ $store.getters.EMAIL }}</a></p>
-            <p><v-icon name="phone-alt"/><a href="tel:${ admin_info.phone_raw }">{{ $store.getters.ADMIN_PHONE }}</a></p>
+            <p><v-icon name="user-tie"/>{{ NAME }}</p>
+            <p><v-icon name="envelope"/> <a href="mailto:${ admin_info.email }">{{ EMAIL }}</a></p>
+            <p><v-icon name="phone-alt"/><a href="tel:${ admin_info.phone_raw }">{{ ADMIN_PHONE }}</a></p>
           </div>
         </b-card>
       </div>
@@ -63,7 +63,7 @@
         contentOffset: [0, 15]
       }
     }),
-    computed: mapGetters(["LOCATION", "ZOOM"])
+    computed: mapGetters("main", ["ADDRESS", "CITY", "DATE_FROM", "DATE_TO", "HOURS", "LOCATION", "PHONE", "ZOOM"])
   }
 </script>
 

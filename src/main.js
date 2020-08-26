@@ -8,7 +8,7 @@ import Vue from 'vue'
 
 //\\//\\//\\ MODULES //\\//\\//\\
 import router from "./router"
-import store from "./store"
+import store from "./stores"
 import { auth } from "./firebase"
 
 //\\//\\//\\ COMPONENTS //\\//\\//\\
@@ -32,6 +32,6 @@ auth.onAuthStateChanged(user => {
     }).$mount('#app')
   }
   if (user) {
-    store.dispatch('fetchUserProfile', user)
+    index.dispatch('fetchUserProfile', user)
   }
 })

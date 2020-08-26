@@ -9,14 +9,14 @@
         <b-row>
           <b-col>
             <h1>
-              {{ $store.getters.CITY }}, {{ $store.getters.ADDRESS }}
+              {{ CITY }}, {{ ADDRESS }}
             </h1>
           </b-col>
         </b-row>
         <b-row>
           <b-col>
             <h3>
-              {{ $store.getters.DATE_FROM }}, {{ $store.getters.HOURS }} ({{ $store.getters.POINT }})
+              {{ DATE_FROM }}, {{ HOURS }} ({{ POINT }})
             </h3>
           </b-col>
         </b-row>
@@ -60,8 +60,9 @@
 </template>
 
 <script>
-  import Navbar from './components/navbar'
-  import Contacts from './components/contacts'
+  import Navbar from "./components/navbar"
+  import Contacts from "./components/contacts"
+  import { mapGetters } from "vuex"
   export default {
     name: "public",
     components: { Navbar, Contacts },
@@ -78,6 +79,7 @@
       window.addEventListener('touchstart', this.touchStart, { passive: false }) // mobile devices
       window.addEventListener('touchmove', this.touchMove, { passive: false }) // mobile devices
     },
+    computed: mapGetters("main", ["ADDRESS", "CITY", "DATE_FROM", "DATE_TO", "HOURS", "PHONE", "POINT"]),
     methods: {
       calculateSectionOffsets() {
         let sections = document.getElementsByTagName('section')
